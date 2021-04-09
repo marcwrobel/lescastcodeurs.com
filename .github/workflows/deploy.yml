@@ -2,7 +2,7 @@ name: Deploy site
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ci-cd ]
 
 jobs:
   deploy:
@@ -12,6 +12,7 @@ jobs:
       DEPLOY_HOST: ${{secrets.DEPLOY_HOST}}
       DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
       DEPLOY_TARGET: ${{secrets.DEPLOY_TARGET}}
+      DEPLOY_OPTIONS: ${{secrets.DEPLOY_OPTIONS}}
     steps:
       - name: Checkout site
         uses: actions/checkout@v2
@@ -25,7 +26,7 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan $DEPLOY_OPTIONS "$DEPLOY_HOST" >> ~/.ssh/known_hosts
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 

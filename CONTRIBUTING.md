@@ -78,6 +78,7 @@ Pour fonctionner ce workflow GitHub Actions nécessite la déclaration des secre
 - `DEPLOY_HOST` : serveur sur lequel le site doit être publié,
 - `DEPLOY_KEY` : clé SSH privée utilisée pour la connexion au serveur,
 - `DEPLOY_TARGET` : répertoire cible sur le serveur où les fichier du site seront copiés.
+- `DEPLOY_OPTIONS` : options additionnelles à passer à rsync.
 
 Il est aussi possible de lancer manuellement la publication du site :
 

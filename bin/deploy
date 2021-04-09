@@ -7,4 +7,5 @@ src="_site/"
 dest="${user}@${host}:${target}"
 
 echo "Syncing $src to $dest"
-rsync -avz --delete --filter='- /video/' --filter='- /cgi-bin/' "$src" "$dest"
+# shellcheck disable=SC2086
+rsync -avz --delete --filter='- /video/' --filter='- /cgi-bin/' $DEPLOY_OPTIONS "$src" "$dest"
